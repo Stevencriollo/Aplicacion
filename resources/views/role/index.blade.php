@@ -1,4 +1,6 @@
-@extends('layouts.app')
+@auth
+
+@extends('layouts.app-master')
 
 @section('template_title')
     Role
@@ -55,12 +57,12 @@
 											<td>{{ $role->rol }}</td>
 
                                             <td>
-                                                <form action="{{ route('roles.destroy',$role->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('role.show',$role->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('role.edit',$role->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('role.destroy',$role->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('role.show',$role->id) }}"><i class=""></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('role.edit',$role->id) }}"><i class=""></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class=""></i> {{ __('Delete') }}</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -74,4 +76,133 @@
             </div>
         </div>
     </div>
+
+    <style>
+    .container-fluid {
+        padding: 20px;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #card_title {
+        font-weight: bold;
+    }
+
+    .float-right {
+        text-align: right;
+    }
+
+    .btn-primary {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #0069d9;
+        border-color: #0062cc;
+    }
+
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+    }
+
+    .alert-success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 1rem;
+        border-radius: 0.25rem;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .table th {
+        font-weight: bold;
+    }
+
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: rgba(0, 0, 0, 0.075);
+    }
+
+    .fa {
+        font-size: 1rem;
+    }
+
+    .fa-fw {
+        width: 1.5em;
+        text-align: center;
+    }
+
+    .fa-eye:before {
+        content: "\f06e";
+    }
+
+    .fa-edit:before {
+        content: "\f044";
+    }
+
+    .fa-trash:before {
+        content: "\f1f8";
+    }
+
+    .btn-success {
+        color: #fff;
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-success:hover {
+        color: #fff;
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    .btn-danger {
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .btn-danger:hover {
+        color: #fff;
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
+</style>
 @endsection
+
+@endauth

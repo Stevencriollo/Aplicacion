@@ -1,3 +1,5 @@
+@extends('layouts.app-master')
+@auth
 <div class="box box-info padding-1">
     <div class="box-body">
         
@@ -27,3 +29,4 @@
         <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
     </div>
 </div>
+@endauth
