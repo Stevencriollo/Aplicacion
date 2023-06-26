@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
      */
     Route::get('/home', 'HomeController@index')->name('home.index');
 
+    Route::resource('role', 'App\Http\Controllers\RoleController');
+    Auth::routes();
+
+
+
     Route::group(['middleware' => ['guest']], function() {
         /**
          * Register Routes
@@ -37,6 +43,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          */
         Route::get('/login', 'LoginController@show')->name('login.show');
         Route::post('/login', 'LoginController@login')->name('login.perform');
+        
+        
 
     });
 
@@ -46,4 +54,14 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          */
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
     });
+
+    
 });
+
+
+/*
+Route::resource('role',RoleController::class);
+        Auth::routes();
+        Route::get('/home',[App\Http\Controllers\HomeController::class,'index'])->name('home');
+
+*/
