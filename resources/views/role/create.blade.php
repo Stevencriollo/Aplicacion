@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-master')
 
 @section('template_title')
     {{ __('Create') }} Role
