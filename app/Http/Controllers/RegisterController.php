@@ -22,6 +22,11 @@ class RegisterController extends Controller
         
         $user = User::create($request->validated());
         auth()->login($user);
+        
+        $user->sendEmailVerificationNotification();
+
         return redirect('/home')->with('success', "Cuenta Creada de Forma Correcta.");
     }
+
+    
 }
