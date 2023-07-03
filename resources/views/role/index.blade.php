@@ -61,6 +61,7 @@
 										<th>Correo</th>
 										<th>Descripcion</th>
 										<th>Rol</th>
+                                        <th>Estado</th>
 
                                         <th></th>
                                     </tr>
@@ -74,15 +75,24 @@
 											<td>{{ $role->correo }}</td>
 											<td>{{ $role->descripcion }}</td>
 											<td>{{ $role->rol }}</td>
+                                            <td>{{ $role->estado }}</td>
 
                                             <td>
                                                 <form action="{{ route('role.destroy',$role->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('role.show',$role->id) }}"><i class=""></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('role.edit',$role->id) }}"><i class=""></i> {{ __('Edit') }}</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class=""></i> {{ __('Delete') }}</button>
                                                 </form>
+                                                <form action="{{ route('role.update', $role->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" name="estado" value="activo" class="btn btn-success btn-sm"><i class=""></i> {{ __('Estado Activo') }}</button>
+                                            </form>
+
+                                            <form action="{{ route('role.update', $role->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" name="estado" value="no-activo" class="btn btn-danger btn-sm"><i class=""></i> {{ __('Estado No Activo') }}</button>
+                                            </form>
                                             </td>
                                         </tr>
                                     @endforeach

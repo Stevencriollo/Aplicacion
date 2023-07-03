@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('correo');
             $table->string('descripcion');
             $table->string('rol');
+            $table->string('estado')->default('activo');
             $table->timestamps();
         });
     }

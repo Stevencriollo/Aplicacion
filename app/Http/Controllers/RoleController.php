@@ -84,10 +84,17 @@ class RoleController extends Controller
      * @param  Role $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
-    {
-        request()->validate(Role::$rules);
+    
 
+    public function update(Request $request, $id)
+    {
+        $role = Role::find($id);
+        if ($request->has('estado')) {
+            $role->estado = $request->estado;
+            $role->save();
+        }
+
+        request()->validate(Role::$rules);
         $role->update($request->all());
 
         return redirect()->route('role.index')
@@ -99,11 +106,4 @@ class RoleController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($id)
-    {
-        $role = Role::find($id)->delete();
-
-        return redirect()->route('role.index')
-            ->with('success', 'Role deleted successfully');
-    }
 }
