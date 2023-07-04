@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::resource('role', 'App\Http\Controllers\RoleController');
     Auth::routes();
 
+    Route::resource('user', 'App\Http\Controllers\UserController');
+    Route::resource('clirols', 'App\Http\Controllers\ClirolController');
 
 
     Route::group(['middleware' => ['guest']], function() {

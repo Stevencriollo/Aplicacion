@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -46,8 +45,23 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * The validation rules for the model attributes.
+     *
+     * @var array<string, string>
+     */
+    public static $rules = [
+        'name' => 'required|string',
+        'username' => 'required|string|unique:users',
+        'email' => 'required|email|unique:users',
+        'password' => 'required|string|min:8',
+        'direccion' => 'required|string',
+        'codigopostal' => 'required|string',
+        'telefono' => 'required|string',
+    ];
+
     public function setPasswordAttribute(string $password){
         $this->attributes['password'] = bcrypt($password);
-
     }
 }
+

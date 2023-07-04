@@ -24,6 +24,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('email_updated_at')->nullable();
             $table->string('password');
+            $table->string('estado')->default('activo');
             $table->rememberToken();
             $table->timestamps();
          });

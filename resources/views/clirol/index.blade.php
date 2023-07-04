@@ -1,7 +1,7 @@
 @extends('layouts.app-master')
 
 @section('template_title')
-    Role
+    Clirol
 @endsection
 
 @section('content')
@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Role') }}
+                                {{ __('Dar Rol A Usuario') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('role.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('clirols.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -34,9 +34,12 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>ID</th>
+                                        <th>No</th>
+                                        
+										<th>Username Usuario</th>
+										<th>Email Usuario</th>
                                         <th>Rol</th>
-										<th>Descripcion</th>
+                                        <th>Descripcion</th>
 										<th>Estado</th>
                                         <th>Actualizacion</th>
 
@@ -44,31 +47,34 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($roles as $role)
+                                    @foreach ($clirols as $clirol)
                                         <tr>
-                                            <td>{{ $role->id }}</td>
-                                            <td>{{ $role->rol }}</td>
-											<td>{{ $role->descripcion }}</td>
-											<td>{{ $role->estado }}</td>
-                                            <td>{{ $role->updated_at }}</td>
+                                            <td>{{ ++$i }}</td>
+                                            
+											<td>{{ $clirol->user->username }}</td>
+                                            <td>{{ $clirol->user->email }}</td>
+											<td>{{ $clirol->role->rol }}</td>
+                                            <td>{{ $clirol->role->descripcion }}</td>
+											<td>{{ $clirol->estado }}</td>
+                                            <td>{{ $clirol->updated_at }}</td>
+
                                             <td>
-                                                <form action="{{ route('role.destroy',$role->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('role.show',$role->id) }}"><i class=""></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('role.edit',$role->id) }}"><i class=""></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('clirols.destroy',$clirol->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('clirols.show',$clirol->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver Completo') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('clirols.edit',$clirol->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                 </form>
 
-                                                <form action="{{ route('role.update', $role->id) }}" method="POST">
+                                                <form action="{{ route('clirols.update', $clirol->id) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <button type="submit" name="estado" value="ACTIVO" class="btn btn-success btn-sm"><i class=""></i> {{ __('Estado Activo') }}</button>
                                             </form>
 
-                                            <form action="{{ route('role.update', $role->id) }}" method="POST">
+                                            <form action="{{ route('clirols.update', $clirol->id) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <button type="submit" name="estado" value="DESACTIVADO" class="btn btn-danger btn-sm"><i class=""></i> {{ __('Estado No Activo') }}</button>
                                             </form>
-                                            
                                             </td>
                                         </tr>
                                     @endforeach
@@ -77,7 +83,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $roles->links() !!}
+                {!! $clirols->links() !!}
             </div>
         </div>
     </div>

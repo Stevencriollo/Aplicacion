@@ -1,7 +1,7 @@
 @extends('layouts.app-master')
 
 @section('template_title')
-    Role
+    User
 @endsection
 
 @section('content')
@@ -13,14 +13,8 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Role') }}
+                                {{ __('User') }}
                             </span>
-
-                             <div class="float-right">
-                                <a href="{{ route('role.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
-                                </a>
-                              </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -35,8 +29,13 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>ID</th>
-                                        <th>Rol</th>
-										<th>Descripcion</th>
+                                        
+										<th>Name</th>
+										<th>Email</th>
+										<th>Username</th>
+										<th>Direccion</th>
+										<th>Codigopostal</th>
+										<th>Telefono</th>
 										<th>Estado</th>
                                         <th>Actualizacion</th>
 
@@ -44,31 +43,35 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($roles as $role)
+                                    @foreach ($users as $user)
                                         <tr>
-                                            <td>{{ $role->id }}</td>
-                                            <td>{{ $role->rol }}</td>
-											<td>{{ $role->descripcion }}</td>
-											<td>{{ $role->estado }}</td>
-                                            <td>{{ $role->updated_at }}</td>
-                                            <td>
-                                                <form action="{{ route('role.destroy',$role->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('role.show',$role->id) }}"><i class=""></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('role.edit',$role->id) }}"><i class=""></i> {{ __('Edit') }}</a>
-                                                </form>
+                                           
+                                            <td>{{ $user->id }}</td>
+											<td>{{ $user->name }}</td>
+											<td>{{ $user->email }}</td>
+											<td>{{ $user->username }}</td>
+											<td>{{ $user->direccion }}</td>
+											<td>{{ $user->codigopostal }}</td>
+											<td>{{ $user->telefono }}</td>
+											<td>{{ $user->estado }}</td>
+                                            <td>{{ $user->updated_at}}</td>
 
-                                                <form action="{{ route('role.update', $role->id) }}" method="POST">
+                                            <td>
+                                                <form action="{{ route('user.destroy',$user->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('user.show',$user->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('user.edit',$user->id) }}"><i class=""></i> {{ __('Edit') }}</a>
+                                                </form>
+                                                
+                                                <form action="{{ route('user.update', $user->id) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="submit" name="estado" value="ACTIVO" class="btn btn-success btn-sm"><i class=""></i> {{ __('Estado Activo') }}</button>
+                                                <button type="submit" name="estado" value="ACTIVO" class="btn btn-sm btn-primary btn-sm"><i class=""></i> {{ __('Estado Activo') }}</button>
                                             </form>
-
-                                            <form action="{{ route('role.update', $role->id) }}" method="POST">
+                                            <form action="{{ route('user.update', $user->id) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <button type="submit" name="estado" value="DESACTIVADO" class="btn btn-danger btn-sm"><i class=""></i> {{ __('Estado No Activo') }}</button>
                                             </form>
-                                            
                                             </td>
                                         </tr>
                                     @endforeach
@@ -77,7 +80,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $roles->links() !!}
+                {!! $users->links() !!}
             </div>
         </div>
     </div>

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 /**
- * Class RoleController
+ * Class UserController
  * @package App\Http\Controllers
  */
-class RoleController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +18,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::paginate();
+        $users = User::paginate();
 
-        return view('role.index', compact('roles'))
-            ->with('i', (request()->input('page', 1) - 1) * $roles->perPage());
+        return view('user.index', compact('users'))
+            ->with('i', (request()->input('page', 1) - 1) * $users->perPage());
     }
 
     /**
@@ -31,8 +31,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $role = new Role();
-        return view('role.create', compact('role'));
+        $user = new User();
+        return view('user.create', compact('user'));
     }
 
     /**
@@ -43,12 +43,12 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Role::$rules);
+        request()->validate(User::$rules);
 
-        $role = Role::create($request->all());
+        $user = User::create($request->all());
 
-        return redirect()->route('role.index')
-            ->with('success', 'Role created successfully.');
+        return redirect()->route('users.index')
+            ->with('success', 'User created successfully.');
     }
 
     /**
@@ -59,9 +59,9 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        $role = Role::find($id);
+        $user = User::find($id);
 
-        return view('role.show', compact('role'));
+        return view('user.show', compact('user'));
     }
 
     /**
@@ -72,29 +72,28 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $role = Role::find($id);
+        $user = User::find($id);
 
-        return view('role.edit', compact('role'));
+        return view('user.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Role $role
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    
     public function update(Request $request, $id)
     {
-        $role = Role::find($id);
+        $user = User::find($id);
         if ($request->has('estado')) {
-            $role->estado = $request->estado;
-            $role->save();
+            $user->estado = $request->estado;
+            $user->save();
         }
 
-        request()->validate(Role::$rules);
-        $role->update($request->all());
+        request()->validate(User::$rules);
+        $user->update($request->all());
 
         return redirect()->route('role.index')
             ->with('success', 'Role updated successfully');
@@ -107,9 +106,9 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        $role = Role::find($id)->delete();
+        $user = User::find($id)->delete();
 
-        return redirect()->route('roles.index')
-            ->with('success', 'Role deleted successfully');
+        return redirect()->route('users.index')
+            ->with('success', 'User deleted successfully');
     }
 }

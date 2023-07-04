@@ -8,13 +8,11 @@ use Illuminate\Database\Eloquent\Model;
  * Class Role
  *
  * @property $id
- * @property $nombre
- * @property $correo
  * @property $descripcion
  * @property $rol
- * @property $created_at
- * @property $updated_at
+ * @property $estado
  *
+ * @property UsuariosRole[] $usuariosRoles
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -22,10 +20,9 @@ class Role extends Model
 {
     
     static $rules = [
-		'nombre' => 'required',
-		'correo' => 'required',
 		'descripcion' => 'required',
 		'rol' => 'required',
+		'estado' => '',
     ];
 
     protected $perPage = 20;
@@ -35,8 +32,16 @@ class Role extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre','correo','descripcion','rol','estado'];
+    protected $fillable = ['descripcion','rol','estado'];
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function usuariosRoles()
+    {
+        return $this->hasMany('App\Models\UsuariosRole', 'role_id', 'id');
+    }
+    
 
 }
