@@ -4,7 +4,17 @@
     User
 @endsection
 
+@auth
 @section('content')
+
+@if (!(auth()->user()->email_verified_at))
+            <div class="container mt-5">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Pendiente verificación de correo</h4>
+                </div>
+            </div>
+        @else
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -15,6 +25,12 @@
                             <span id="card_title">
                                 {{ __('User') }}
                             </span>
+
+                            <div class="float-right">
+                                <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                  {{ __('Create New') }}
+                                </a>
+                              </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -84,4 +100,6 @@
             </div>
         </div>
     </div>
+@endif
 @endsection
+@endauth

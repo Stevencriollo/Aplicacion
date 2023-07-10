@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-
+//incremento de campo estado
     /**
      * Reverse the migrations.
      *

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
-    //
+    //redirecion a la vista de home
 
     public function show(){
         if(Auth::check()){
@@ -23,6 +23,8 @@ class RegisterController extends Controller
         $user = User::create($request->validated());
         auth()->login($user);
         
+        //comprobacion de la verificacion de correo
+
         $user->sendEmailVerificationNotification();
 
         return redirect('/home')->with('success', "Cuenta Creada de Forma Correcta.");

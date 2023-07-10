@@ -29,6 +29,8 @@ return new class extends Migration
             $table->timestamps();
          });
     }
+    
+//INCREMENTO DE CAMPO ACTUALIZACION ESTADO Y EMAIL VERIFICADO
 
     /**
      * Reverse the migrations.

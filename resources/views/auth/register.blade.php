@@ -1,6 +1,15 @@
 @extends('layouts.auth-master')
 
 @section('content')
+
+<div style="background-color: black; padding: 10px;">
+  <div class="text-end">
+    <a href="{{ route('login.perform') }}" class="btn btn-outline-light me-2">Inicia Sesión</a>
+    <a href="{{ route('register.perform') }}" class="btn btn-warning">Regístrate</a>
+    <a href="/home" class="btn btn-outline-light">Home</a>
+  </div>
+</div>
+
     <form method="post" action="{{ route('register.perform') }}" class="container w-25">
 
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />

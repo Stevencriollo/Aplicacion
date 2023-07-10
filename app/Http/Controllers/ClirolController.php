@@ -1,4 +1,6 @@
 <?php
+//SE LLAMA AL MODELO DE USUARIO Y ROL PARA PODER HACER LA RELACION
+//CON LAS TABLAS Y MOSTAR LOS DATOS SIN USAR ID SINO EL NOMBRE
 
 namespace App\Http\Controllers;
 
@@ -33,6 +35,8 @@ class ClirolController extends Controller
      */
     public function create()
     {
+        //USO DE PLUCK PARA MOSTRAR LOS DATOS DE LAS TABLAS
+        //EN UNA LISTA DESPLEGABLE
         $clirol = new Clirol();
         $roles = Role::pluck('rol', 'id');
         $users = User::pluck('username', 'id');
@@ -76,6 +80,9 @@ class ClirolController extends Controller
      */
     public function edit($id)
     {
+        //USO DE PLUCK PARA EDITAR LOS DATOS DE LAS TABLAS
+        //EN UNA LISTA DESPLEGABLE
+
         $clirol = Clirol::find($id);
         $roles = Role::pluck('rol', 'id');
         $users = User::pluck('username', 'id');
@@ -89,6 +96,10 @@ class ClirolController extends Controller
      * @param  Clirol $clirol
      * @return \Illuminate\Http\Response
      */
+
+    //la funcion update se encarga de actualizar los datos de un Usuario_Rol
+     //donde a su vez actualiza el estado del Usuario_Rol
+     //por medio de la funcion PUT
 
     public function update(Request $request, $id)
     {

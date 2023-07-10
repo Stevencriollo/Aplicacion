@@ -47,7 +47,7 @@ class UserController extends Controller
 
         $user = User::create($request->all());
 
-        return redirect()->route('users.index')
+        return redirect()->route('user.index')
             ->with('success', 'User created successfully.');
     }
 
@@ -84,6 +84,11 @@ class UserController extends Controller
      * @param  User $user
      * @return \Illuminate\Http\Response
      */
+    
+     //la funcion update se encarga de actualizar los datos de un usuario
+     //donde a su vez actualiza el estado del usuario
+     //por medio de la funcion PUT
+     
     public function update(Request $request, $id)
     {
         $user = User::find($id);
@@ -95,8 +100,8 @@ class UserController extends Controller
         request()->validate(User::$rules);
         $user->update($request->all());
 
-        return redirect()->route('role.index')
-            ->with('success', 'Role updated successfully');
+        return redirect()->route('user.index')
+            ->with('success', 'User updated successfully');
     }
 
     /**
@@ -108,7 +113,7 @@ class UserController extends Controller
     {
         $user = User::find($id)->delete();
 
-        return redirect()->route('users.index')
+        return redirect()->route('user.index')
             ->with('success', 'User deleted successfully');
     }
 }

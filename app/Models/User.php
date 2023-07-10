@@ -50,16 +50,21 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array<string, string>
      */
+
+     //definicion de las variables estaticas para el ingreso desde el crud
+
     public static $rules = [
         'name' => 'required|string',
-        'username' => 'required|string|unique:users',
-        'email' => 'required|email|unique:users',
+        'username' => 'required|string',
+        'email' => 'required|email',
         'password' => 'required|string|min:8',
         'direccion' => 'required|string',
         'codigopostal' => 'required|string',
         'telefono' => 'required|string',
     ];
 
+    //clave encriptada
+    
     public function setPasswordAttribute(string $password){
         $this->attributes['password'] = bcrypt($password);
     }

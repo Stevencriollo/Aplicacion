@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-master')
 
 @section('template_title')
     {{ __('Create') }} User
@@ -16,7 +16,7 @@
                         <span class="card-title">{{ __('Create') }} User</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('users.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('user.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
                             @include('user.form')
