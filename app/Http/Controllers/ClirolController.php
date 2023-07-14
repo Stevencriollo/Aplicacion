@@ -38,7 +38,8 @@ class ClirolController extends Controller
         //USO DE PLUCK PARA MOSTRAR LOS DATOS DE LAS TABLAS
         //EN UNA LISTA DESPLEGABLE
         $clirol = new Clirol();
-        $roles = Role::pluck('rol', 'id');
+        //comprueba que el estado del rol sea diferente a DESACTIVADO
+        $roles = Role::where('estado', '!=', 'DESACTIVADO')->pluck('rol', 'id');
         $users = User::pluck('username', 'id');
         return view('clirol.create', compact('clirol', 'roles','users'));
     }
@@ -84,7 +85,8 @@ class ClirolController extends Controller
         //EN UNA LISTA DESPLEGABLE
 
         $clirol = Clirol::find($id);
-        $roles = Role::pluck('rol', 'id');
+        //comprueba que el estado del rol sea diferente a DESACTIVADO
+        $roles = Role::where('estado', '!=', 'DESACTIVADO')->pluck('rol', 'id');
         $users = User::pluck('username', 'id');
         return view('clirol.edit', compact('clirol', 'roles','users'));
     }
