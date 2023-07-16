@@ -44,12 +44,23 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
      * Home Routes
      */
     Route::get('/home', 'HomeController@index')->name('home.index');
+    //ingreso en caso de ser admin
+    
+    Route::get('/homeadmin', 'HomeControlleradmin@index')->name('homeadmin.index');
 
     Route::resource('role', 'App\Http\Controllers\RoleController');
     Auth::routes();
 
     Route::resource('user', 'App\Http\Controllers\UserController');
     Route::resource('clirols', 'App\Http\Controllers\ClirolController');
+
+    //definicion de rutas para el modulo de empleados
+
+    Route::resource('periodos', 'App\Http\Controllers\PeriodoController');
+    Route::resource('carreras', 'App\Http\Controllers\CarreraController');
+    Route::resource('periodos', 'App\Http\Controllers\PeriodoController');
+    Route::resource('empleadocarrera', 'App\Http\Controllers\EmpleadocarreraController');
+    Route::resource('empleados', 'App\Http\Controllers\EmpleadoController');
 
 
     Route::group(['middleware' => ['guest']], function() {
