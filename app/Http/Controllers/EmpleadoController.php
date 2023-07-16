@@ -88,8 +88,15 @@ class EmpleadoController extends Controller
      * @param  Empleado $empleado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empleado $empleado)
+   
+    public function update(Request $request, $id)
     {
+        $empleado = Empleado::find($id);
+        if ($request->has('estado')) {
+            $empleado->estado = $request->estado;
+            $empleado->save();
+        }
+
         request()->validate(Empleado::$rules);
 
         $empleado->update($request->all());
@@ -97,6 +104,8 @@ class EmpleadoController extends Controller
         return redirect()->route('empleados.index')
             ->with('success', 'Empleado updated successfully');
     }
+
+
 
     /**
      * @param int $id

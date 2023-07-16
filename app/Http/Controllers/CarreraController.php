@@ -85,14 +85,21 @@ class CarreraController extends Controller
      * @param  Carrera $carrera
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Carrera $carrera)
+    
+    public function update(Request $request, $id)
     {
+        $carrera = Carrera::find($id);
+        if ($request->has('estado')) {
+            $carrera->estado = $request->estado;
+            $carrera->save();
+        }
+
         request()->validate(Carrera::$rules);
 
         $carrera->update($request->all());
 
         return redirect()->route('carreras.index')
-            ->with('success', 'Carrera updated successfully');
+        ->with('success', 'Carrera updated successfully');
     }
 
     /**

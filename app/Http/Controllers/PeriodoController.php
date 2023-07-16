@@ -85,8 +85,15 @@ class PeriodoController extends Controller
      * @param  Periodo $periodo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Periodo $periodo)
+    
+    public function update(Request $request, $id)
     {
+        $periodo = Periodo::find($id);
+        if ($request->has('estado')) {
+            $periodo->estado = $request->estado;
+            $periodo->save();
+        }
+
         request()->validate(Periodo::$rules);
 
         $periodo->update($request->all());

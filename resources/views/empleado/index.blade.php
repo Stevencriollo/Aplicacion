@@ -4,6 +4,7 @@
     Empleado
 @endsection
 
+@auth
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -42,7 +43,9 @@
 										<th>User Id</th>
 										<th>Fechaingreso</th>
 										<th>Estado</th>
-										<th>Usuariomodifica</th>
+                                        <th>Creado:</th>
+                                        <th>Modificado:</th>
+										<th>Modificado Por </th>
 
                                         <th></th>
                                     </tr>
@@ -58,6 +61,8 @@
 											<td>{{ $empleado->user->username }}</td>
 											<td>{{ $empleado->fechaingreso }}</td>
 											<td>{{ $empleado->estado }}</td>
+                                            <td>{{ $empleado->created_at }}</td>
+                                            <td>{{ $empleado->updated_at }}</td>
 											<td>{{ $empleado->usuariomodifica }}</td>
 
                                             <td>
@@ -68,6 +73,19 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
                                                 </form>
+
+                                                <form action="{{ route('empleados.update', $empleado->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" name="estado" value="ACTIVO" class="btn btn-success btn-sm"><i class=""></i> {{ __('Estado Activo') }}</button>
+                                            </form>
+
+                                            <form action="{{ route('empleados.update', $empleado->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" name="estado" value="DESACTIVADO" class="btn btn-danger btn-sm"><i class=""></i> {{ __('Estado No Activo') }}</button>
+                                            </form>
+                                                
                                             </td>
                                         </tr>
                                     @endforeach
@@ -81,3 +99,4 @@
         </div>
     </div>
 @endsection
+@endauth

@@ -4,6 +4,7 @@
     Empleadocarrera
 @endsection
 
+@auth
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -41,7 +42,9 @@
 										<th>Periodo Id</th>
 										<th>Fecha</th>
 										<th>Estado</th>
-										<th>Usuariomodifica</th>
+                                        <th>Creado:</th>
+                                        <th>Modificado:</th>
+										<th>Modificado Por:</th>
 
                                         <th></th>
                                     </tr>
@@ -56,6 +59,8 @@
 											<td>{{ $empleadocarrera->periodo->nombre }}</td>
 											<td>{{ $empleadocarrera->fecha }}</td>
 											<td>{{ $empleadocarrera->estado }}</td>
+                                            <td>{{ $empleadocarrera->created_at }}</td>
+                                            <td>{{ $empleadocarrera->updated_at }}</td>
 											<td>{{ $empleadocarrera->usuariomodifica }}</td>
 
                                             <td>
@@ -66,6 +71,18 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
                                                 </form>
+
+                                                <form action="{{ route('empleadocarrera.update', $empleadocarrera->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" name="estado" value="ACTIVO" class="btn btn-success btn-sm"><i class=""></i> {{ __('Estado Activo') }}</button>
+                                            </form>
+
+                                            <form action="{{ route('empleadocarrera.update', $empleadocarrera->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" name="estado" value="DESACTIVADO" class="btn btn-danger btn-sm"><i class=""></i> {{ __('Estado No Activo') }}</button>
+                                            </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -79,3 +96,4 @@
         </div>
     </div>
 @endsection
+@endauth

@@ -96,15 +96,22 @@ class EmpleadocarreraController extends Controller
      * @param  Empleadocarrera $empleadocarrera
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empleadocarrera $empleadocarrera)
+   
+
+    public function update(Request $request, $id)
     {
-        request()->validate(Empleadocarrera::$rules);
+        $empleadocarrera = empleadocarrera::find($id);
+        if ($request->has('estado')) {
+            $empleadocarrera->estado = $request->estado;
+            $empleadocarrera->save();
+        }
 
         $empleadocarrera->update($request->all());
 
         return redirect()->route('empleadocarrera.index')
             ->with('success', 'Empleadocarrera updated successfully');
     }
+
 
     /**
      * @param int $id
@@ -115,7 +122,7 @@ class EmpleadocarreraController extends Controller
     {
         $empleadocarrera = Empleadocarrera::find($id)->delete();
 
-        return redirect()->route('empleadocarreras.index')
+        return redirect()->route('empleadocarrera.index')
             ->with('success', 'Empleadocarrera deleted successfully');
     }
 }
