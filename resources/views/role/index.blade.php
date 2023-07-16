@@ -46,9 +46,9 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Rol</th>
-										<th>Descripcion</th>
+										<th>Descripción</th>
 										<th>Estado</th>
-                                        <th>Actualizacion</th>
+                                        <th>Actualización</th>
 
                                         <th></th>
                                     </tr>

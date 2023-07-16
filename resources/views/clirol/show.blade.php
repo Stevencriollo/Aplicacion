@@ -20,7 +20,7 @@
 
                     <div class="card-body">
                         <div class="form-group">
-                            <strong>Descripcion:</strong>
+                            <strong>Descripción:</strong>
                             {{ $clirol->role->descripcion }}
                         </div>
                         <div class="form-group">
