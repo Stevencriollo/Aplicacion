@@ -13,9 +13,9 @@
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
-                            <span id="card_title">
+                            <strong><span id="card_title">
                                 {{ __('Empleado') }}
-                            </span>
+                            </span></strong>
 
                              <div class="float-right">
                                 <a href="{{ route('empleados.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">

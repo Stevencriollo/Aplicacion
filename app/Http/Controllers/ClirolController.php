@@ -40,7 +40,7 @@ class ClirolController extends Controller
         $clirol = new Clirol();
         //comprueba que el estado del rol sea diferente a DESACTIVADO
         $roles = Role::where('estado', '!=', 'DESACTIVADO')->pluck('rol', 'id');
-        $users = User::pluck('username', 'id');
+        $users = User::where('estado', '!=', 'DESACTIVADO')->pluck('username', 'id');
         return view('clirol.create', compact('clirol', 'roles','users'));
     }
 
@@ -87,7 +87,7 @@ class ClirolController extends Controller
         $clirol = Clirol::find($id);
         //comprueba que el estado del rol sea diferente a DESACTIVADO
         $roles = Role::where('estado', '!=', 'DESACTIVADO')->pluck('rol', 'id');
-        $users = User::pluck('username', 'id');
+        $users = User::where('estado', '!=', 'DESACTIVADO')->pluck('username', 'id');
         return view('clirol.edit', compact('clirol', 'roles','users'));
     }
 
