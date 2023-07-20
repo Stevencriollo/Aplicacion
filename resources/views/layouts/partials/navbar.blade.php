@@ -1,7 +1,7 @@
 <header class="p-3 bg-dark text-white">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+      <a href="/home" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
         <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
       </a>
       
@@ -10,8 +10,8 @@
         <li><a href="/role" class="nav-link px-2 text-white">Roles</a></li>
         <li><a href="/user" class="nav-link px-2 text-white">Usuario</a></li>
         <li><a href="/clirols" class="nav-link px-2 text-white">[Administrar Rol de Usuarios]</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">Contactanos</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">Mas información</a></li>
+        <li><a href="/home" class="nav-link px-2 text-white">Contactanos</a></li>
+        <li><a href="/user" class="nav-link px-2 text-white">Mas información</a></li>
         @auth
         <!--El usuario tiene un registro en la tabla clirols donde el role es "Administrador" y el estado no es "DESACTIVADO"!-->
         @if(App\Models\Clirol::where('user_id', auth()->user()->id)->where('estado', '!=', 'DESACTIVADO')->whereHas('role', function ($query) {
