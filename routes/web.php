@@ -62,6 +62,14 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::resource('empleadocarrera', 'App\Http\Controllers\EmpleadocarreraController');
     Route::resource('empleados', 'App\Http\Controllers\EmpleadoController');
 
+    //nuevas rutas para el modulo de actividades de la API
+    Route::get('/empleadoactividades', 'EmpleadoActividadController@index')->name('empleadoactividades.index');
+    Route::get('/empleadoactividades/create', 'EmpleadoActividadController@create')->name('empleadoactividades.create');
+    Route::post('/empleadoactividades', 'EmpleadoActividadController@store')->name('empleadoactividades.store');
+    Route::get('/empleadoactividades/{id}', 'EmpleadoActividadController@show')->name('empleadoactividades.show');
+    Route::get('/empleadoactividades/{id}/edit', 'EmpleadoActividadController@edit')->name('empleadoactividades.edit');
+    Route::put('/empleadoactividades/{id}', 'EmpleadoActividadController@update')->name('empleadoactividades.update');
+    Route::delete('/empleadoactividades/{id}', 'EmpleadoActividadController@destroy')->name('empleadoactividades.destroy');
 
     Route::group(['middleware' => ['guest']], function() {
         /**

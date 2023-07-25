@@ -12,6 +12,7 @@
         <li><a href="/clirols" class="nav-link px-2 text-white">[Administrar Rol de Usuarios]</a></li>
         <li><a href="/home" class="nav-link px-2 text-white">Contactanos</a></li>
         <li><a href="/user" class="nav-link px-2 text-white">Mas información</a></li>
+        <li><a href="/empleadoactividades" class="nav-link px-2 text-info">[VISUAL_API]</a></li>
         @auth
         <!--El usuario tiene un registro en la tabla clirols donde el role es "Administrador" y el estado no es "DESACTIVADO"!-->
         @if(App\Models\Clirol::where('user_id', auth()->user()->id)->where('estado', '!=', 'DESACTIVADO')->whereHas('role', function ($query) {
